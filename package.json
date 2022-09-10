@@ -9,6 +9,12 @@
     {
         "com.unity.mathematics": "1.2.6"
     },
+    "samples":
+    {
+            "displayName": "Curved Pointer Sample",
+            "description": "A sample scene for testing the functionality of the curved pointer.",
+            "path": "Samples~/CurvedPointerSample"
+    },
     "keywords":
     [
         "pointer",
