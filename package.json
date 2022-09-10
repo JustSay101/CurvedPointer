@@ -1,0 +1,32 @@
+{
+    "name": "com.justsay101.curvedpointer",
+    "version": "0.9.0",
+    "displayName": "Curved Pointer",
+    "description": "An implementation of 'Slay The Spire' style visualization of a pointer for any use.",
+    "unity": "2021.3",
+    "unityRelease": "1f1",
+    "dependencies":
+    {
+        "com.unity.mathematics": "1.2.6"
+    },
+    "samples": 
+    [
+        {
+            "displayName": "Curved Pointer Sample",
+            "description": "A sample scene for testing the functionality of the curved pointer.",
+            "path": "Samples/CurvedPointerSample"
+        }
+    ],
+    "keywords":
+    [
+        "pointer",
+        "curved",
+        "curved pointer",
+        "pointer",
+        "slay the spire"
+    ],
+    "author":
+    {
+        "name": "Juho Tommola"
+    }
+}
