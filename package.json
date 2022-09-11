@@ -1,6 +1,6 @@
 {
     "name": "com.justsay101.curvedpointer",
-    "version": "0.9.0",
+    "version": "0.9.1",
     "displayName": "Curved Pointer",
     "description": "An implementation of 'Slay The Spire' style visualization of a pointer for any use.",
     "unity": "2021.3",
