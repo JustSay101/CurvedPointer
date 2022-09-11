@@ -15,6 +15,8 @@ namespace CustomPointers
         [Tooltip("Offsets the head from the point of the pointer by one (1) point. This option is automatically disabled," +
                  " if the resolution of the pointer is less than 3.")]
         [SerializeField] private bool offsetPointerHead;
+
+        [SerializeField] private bool showRoot;
         
         private (Transform transform, SpriteRenderer renderer, float point, float pointSqrt, float pointPow)[] pointerPoints;
         
@@ -25,9 +27,7 @@ namespace CustomPointers
             
             pointerPoints =
                 new (Transform transform, SpriteRenderer renderer, float point, float pointSqrt, float pointPow)
-                [offsetPointerHead
-                    ? resolution
-                    : resolution + 1];
+                [offsetPointerHead ? resolution : resolution + 1];
 
             float step = 1f / resolution;
             float currentPoint = 0;
@@ -64,17 +64,15 @@ namespace CustomPointers
         {
             for (var i = 0; i < pointerPoints.Length; i++)
             {
-                
                 pointerPoints[i].transform.position = CalculatePosition(pointerPoints[i], from, to);
                 
                 if (i < pointerPoints.Length - 1)
                 {
-                    pointerPoints[i].transform.up = pointerPoints[i + 1].transform.position - pointerPoints[i].transform.position;
+                    pointerPoints[i].transform.up = CalculatePosition(pointerPoints[i + 1], from, to) - (Vector2)pointerPoints[i].transform.position;
+                    continue;
                 }
-                else
-                {
-                    pointerPoints[i].transform.up = pointerPoints[i].transform.position - pointerPoints[i - 1].transform.position;
-                }
+                
+                pointerPoints[i].transform.up = (Vector2)pointerPoints[i].transform.position - CalculatePosition(pointerPoints[i - 1], from, to);
             }
         }
         
@@ -91,7 +89,7 @@ namespace CustomPointers
             var cursorRenderer = cursorPoint.AddComponent<SpriteRenderer>();
             cursorRenderer.sortingOrder = 100 + i;
             
-            cursorRenderer.sprite = i == 0 && pointerRoot != null ? pointerRoot :
+            cursorRenderer.sprite = i == 0 ? showRoot ? pointerRoot : null :
                 offsetPointerHead ? i == resolution - 1 ? pointerHead : pointerDot :
                 i == resolution ? pointerHead : pointerDot;
             
@@ -111,5 +109,5 @@ namespace CustomPointers
             
             return new Vector2(x, y);
         }
-    }   
+    }
 }
